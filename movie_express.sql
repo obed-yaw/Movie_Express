@@ -20,8 +20,7 @@ SET time_zone = "+00:00";
 --
 -- Database: `movie_express`
 --
-create schema movie_express;
-use movie_express;
+
 -- --------------------------------------------------------
 
 --

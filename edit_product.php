@@ -16,7 +16,6 @@ if(!$product){
 <?php
  if(isset($_POST['product'])){
     $req_fields = array('product-title','product-categorie','product-quantity','buying-price', 'saleing-price' );
-    validate_fields($req_fields);
 
    if(empty($errors)){
        $p_name  = remove_junk($db->escape($_POST['product-title']));
@@ -53,7 +52,7 @@ if(!$product){
 <?php include_once('layouts/header.php'); ?>
 <div class="row">
   <div class="col-md-12">
-    <?php echo display_msg($msg); ?>
+    <?php echo display_message($msg); ?>
   </div>
 </div>
   <div class="row">

@@ -9,7 +9,7 @@
 <?php
  if(isset($_POST['add_movie'])){
    $req_fields = array('movie-title','movie-categorie','movie-quantity','buying-price', 'selling-price' );
-   validate_fields($req_fields);
+  
    if(empty($errors)){
      $p_name  = remove_junk($db->escape($_POST['movie-title']));
      $p_cat   = remove_junk($db->escape($_POST['movie-categorie']));

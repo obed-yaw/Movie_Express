@@ -9,7 +9,6 @@
   if(isset($_POST['update'])){
 
     $req_fields = array('new-password','old-password','id' );
-    validate_fields($req_fields);
 
     if(empty($errors)){
 
@@ -41,7 +40,7 @@
     <div class="text-center">
        <h3>Change your password</h3>
      </div>
-     <?php echo display_msg($msg); ?>
+     <?php echo display_message($msg); ?>
       <form method="post" action="change_password.php" class="clearfix">
         <div class="form-group">
               <label for="newPassword" class="control-label">New password</label>

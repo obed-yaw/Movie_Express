@@ -8,7 +8,6 @@ $results = '';
 <?php
   if(isset($_POST['submit'])){
     $req_dates = array('start-date','end-date');
-    validate_fields($req_dates);
 
     if(empty($errors)):
       $start_date   = remove_junk($db->escape($_POST['start-date']));
@@ -103,7 +102,7 @@ $results = '';
               <td class="text-right"><?php echo remove_junk($result['buy_price']);?></td>
               <td class="text-right"><?php echo remove_junk($result['sale_price']);?></td>
               <td class="text-right"><?php echo remove_junk($result['total_sales']);?></td>
-              <td class="text-right"><?php echo remove_junk($result['total_selling_price']);?></td>
+              <td class="text-right"><?php echo remove_junk($result['total_saleing_price']);?></td>
           </tr>
         <?php endforeach; ?>
         </tbody>

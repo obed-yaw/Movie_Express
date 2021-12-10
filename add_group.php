@@ -8,7 +8,7 @@
   if(isset($_POST['add'])){
 
    $req_fields = array('group-name','group-level');
-   validate_fields($req_fields);
+
 
    if(find_by_groupName($_POST['group-name']) === false ){
      $session->msg('d','<b>Sorry.</b> Entered group name already in database.');
@@ -47,7 +47,7 @@
     <div class="text-center">
        <h3>Add new user group</h3>
      </div>
-     <?php echo display_msg($msg); ?>
+     <?php echo display_message($msg); ?>
       <form method="post" action="add_group.php" class="clearfix">
         <div class="form-group">
               <label for="name" class="control-label">Group Name</label>

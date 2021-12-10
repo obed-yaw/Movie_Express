@@ -62,9 +62,8 @@ function count_by_id($table){
      return($db->fetch_assoc($result));
   }
 }
-/*--------------------------------------------------------------*/
-/* Determine if database table exists
-/*--------------------------------------------------------------*/
+
+//Determine if database table exists
 function tableExists($table){
   global $db;
   $table_exit = $db->query('SHOW TABLES FROM '.DB_NAME.' LIKE "'.$db->escape($table).'"');
@@ -75,10 +74,8 @@ function tableExists($table){
               return false;
       }
   }
- /*--------------------------------------------------------------*/
- /* Login with the data provided in $_POST,
- /* coming from the login form.
-/*--------------------------------------------------------------*/
+
+ //Login with the data provided in $_POST,
   function authenticate($username='', $password='') {
     global $db;
     $username = $db->escape($username);
@@ -94,11 +91,7 @@ function tableExists($table){
     }
    return false;
   }
-  /*--------------------------------------------------------------*/
-  /* Login with the data provided in $_POST,
-  /* coming from the login_v2.php form.
-  /* If you used this method then remove authenticate function.
- /*--------------------------------------------------------------*/
+  
    function authenticate_v2($username='', $password='') {
      global $db;
      $username = $db->escape($username);
@@ -116,9 +109,7 @@ function tableExists($table){
    }
 
 
-  /*--------------------------------------------------------------*/
-  /* Find current log in user by session id
-  /*--------------------------------------------------------------*/
+  //Find current log in user by session id
   function current_user(){
       static $current_user;
       global $db;
@@ -130,10 +121,8 @@ function tableExists($table){
       }
     return $current_user;
   }
-  /*--------------------------------------------------------------*/
-  /* Find all user by
-  /* Joining users table and user gropus table
-  /*--------------------------------------------------------------*/
+
+  //Find all user by joining users table and user gropus table
   function find_all_user(){
       global $db;
       $results = array();
@@ -145,10 +134,8 @@ function tableExists($table){
       $result = find_by_sql($sql);
       return $result;
   }
-  /*--------------------------------------------------------------*/
-  /* Function to update the last log in of a user
-  /*--------------------------------------------------------------*/
-
+  
+  //Function to update the last log in of a user
  function updateLastLogIn($user_id)
 	{
 		global $db;
@@ -158,9 +145,8 @@ function tableExists($table){
     return ($result && $db->affected_rows() === 1 ? true : false);
 	}
 
-  /*--------------------------------------------------------------*/
-  /* Find all Group name
-  /*--------------------------------------------------------------*/
+ 
+  //Find all Group name
   function find_by_groupName($val)
   {
     global $db;
@@ -168,9 +154,8 @@ function tableExists($table){
     $result = $db->query($sql);
     return($db->num_rows($result) === 0 ? true : false);
   }
-  /*--------------------------------------------------------------*/
-  /* Find group level
-  /*--------------------------------------------------------------*/
+ 
+  //Find group level
   function find_by_groupLevel($level)
   {
     global $db;
@@ -178,22 +163,21 @@ function tableExists($table){
     $result = $db->query($sql);
     return($db->num_rows($result) === 0 ? true : false);
   }
-  /*--------------------------------------------------------------*/
-  /* Function for cheaking which user level has access to page
-  /*--------------------------------------------------------------*/
+
+  //Function for checking which user level has access to page
    function page_require_level($require_level){
      global $session;
      $current_user = current_user();
      $login_level = find_by_groupLevel($current_user['user_level']);
-     //if user not login
+     //if user is not logged in
      if (!$session->isUserLoggedIn(true)):
             $session->msg('d','Please login...');
             redirect('index.php', false);
-      //if Group status Deactive
+      //if group status Deactives
      elseif($login_level['group_status'] === '0'):
-           $session->msg('d','This level user has been band!');
+           $session->msg('d','This level user has been banned!');
            redirect('home.php',false);
-      //cheackin log in User level and Require level is Less than or equal to
+      //checking logged in user level and require level is less than or equal to
      elseif($current_user['user_level'] <= (int)$require_level):
               return true;
       else:
@@ -202,10 +186,8 @@ function tableExists($table){
         endif;
 
      }
-   /*--------------------------------------------------------------*/
-   /* Function for Finding all product name
-   /* JOIN with categorie  and media database table
-   /*--------------------------------------------------------------*/
+  
+   //Function for finding all product name by joining with categorie and media database table
   function join_product_table(){
      global $db;
      $sql  =" SELECT p.id,p.name,p.quantity,p.buy_price,p.sale_price,p.media_id,p.date,c.name";
@@ -217,8 +199,8 @@ function tableExists($table){
     return find_by_sql($sql);
 
    }
-  /*--------------------------------------------------------------*/
-  /* Function for Finding all product name
+ 
+  //Function for finding all product name
   /* Request coming from ajax.php for auto suggest
   /*--------------------------------------------------------------*/
 

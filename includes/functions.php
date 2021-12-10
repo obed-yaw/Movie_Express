@@ -67,7 +67,7 @@ function total_price($totals){
    $sum = 0;
    $sub = 0;
    foreach($totals as $total ){
-     $sum += $total['total_selling_price'];
+     $sum += $total['total_saleing_price'];
      $sub += $total['total_buying_price'];
      $profit = $sum - $sub;
    }

@@ -8,7 +8,6 @@
 
   if(isset($_POST['add_sale'])){
     $req_fields = array('s_id','quantity','price','total', 'date' );
-    validate_fields($req_fields);
         if(empty($errors)){
           $p_id      = $db->escape((int)$_POST['s_id']);
           $s_qty     = $db->escape((int)$_POST['quantity']);
@@ -61,7 +60,7 @@
       <div class="panel-heading clearfix">
         <strong>
           <span class="glyphicon glyphicon-th"></span>
-          <span>Sale Eidt</span>
+          <span>Sale edit</span>
        </strong>
       </div>
       <div class="panel-body">
@@ -70,7 +69,7 @@
            <thead>
             <th> Item </th>
             <th> Price </th>
-            <th> Qty </th>
+            <th> Quantity </th>
             <th> Total </th>
             <th> Date</th>
             <th> Action</th>
