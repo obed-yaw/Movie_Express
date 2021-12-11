@@ -1,10 +1,9 @@
 <?php
   $page_title = 'Add Movie';
   require_once('includes/load.php');
-  // Checkin What level user has permission to view this page
+  //Check what level user has permission to view this page
   page_require_level(2);
   $all_categories = find_all('categories');
-  $all_photo = find_all('media');
 ?>
 <?php
  if(isset($_POST['add_movie'])){
@@ -16,16 +15,12 @@
      $p_qty   = remove_junk($db->escape($_POST['movie-quantity']));
      $p_buy   = remove_junk($db->escape($_POST['buying-price']));
      $p_sale  = remove_junk($db->escape($_POST['selling-price']));
-     if (is_null($_POST['movie-photo']) || $_POST['movie-photo'] === "") {
-       $media_id = '0';
-     } else {
-       $media_id = remove_junk($db->escape($_POST['movie-photo']));
-     }
+    
      $date    = make_date();
      $query  = "INSERT INTO products (";
-     $query .=" name,quantity,buy_price,sale_price,categorie_id,media_id,date";
+     $query .=" name,quantity,buy_price,sale_price,categorie_id,date";
      $query .=") VALUES (";
-     $query .=" '{$p_name}', '{$p_qty}', '{$p_buy}', '{$p_sale}', '{$p_cat}', '{$media_id}', '{$date}'";
+     $query .=" '{$p_name}', '{$p_qty}', '{$p_buy}', '{$p_sale}', '{$p_cat}', '{$date}'";
      $query .=")";
      $query .=" ON DUPLICATE KEY UPDATE name='{$p_name}'";
      if($db->query($query)){
@@ -68,8 +63,7 @@
                    <i class="glyphicon glyphicon-th-large"></i>
                   </span>
                   <input type="text" class="form-control" name="movie-title" placeholder="Movie Title">
-               </div>
-              </div>
+                  </div>
               <div class="form-group">
                 <div class="row">
                   <div class="col-md-6">
@@ -81,18 +75,10 @@
                     <?php endforeach; ?>
                     </select>
                   </div>
-                  <div class="col-md-6">
-                    <select class="form-control" name="movie-photo">
-                      <option value="">Select Movie Photo</option>
-                    <?php  foreach ($all_photo as $photo): ?>
-                      <option value="<?php echo (int)$photo['id'] ?>">
-                        <?php echo $photo['file_name'] ?></option>
-                    <?php endforeach; ?>
-                    </select>
-                  </div>
                 </div>
               </div>
-
+               </div>
+              </div>
               <div class="form-group">
                <div class="row">
                  <div class="col-md-4">

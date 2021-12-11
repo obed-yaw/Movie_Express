@@ -7,7 +7,7 @@
 <div class="login-page">
     <div class="text-center">
        <h1>Welcome</h1>
-       <p>Sign in to start your session</p>
+       <p>Sign in to use this website</p>
      </div>
      <?php echo display_message($msg); ?>
       <form method="post" action="auth.php" class="clearfix">

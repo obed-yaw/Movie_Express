@@ -1,7 +1,7 @@
 <?php
  $errors = array();
 
- // Function to remove escape character
+ // Function to remove escape characters
 function special_escape($str){
   global $con;
   $escape = mysqli_real_escape_string($con,$str);
@@ -22,13 +22,13 @@ function first_character($str){
   return $val;
 }
 
-//Function for checking input fields not empty
+//Function for checking input not empty
 function check_field($var){
   global $errors;
   foreach ($var as $field) {
     $val = remove_junk($_POST[$field]);
     if(isset($val) && $val==''){
-      $errors = $field ." can't be blank.";
+      $errors = $field ."Cannot be blank.";
       return $errors;
     }
   }
@@ -60,18 +60,6 @@ function redirect($url, $permanent = false)
     }
 
     exit();
-}
-
-//Function for find out total selling price, buying price and profit
-function total_price($totals){
-   $sum = 0;
-   $sub = 0;
-   foreach($totals as $total ){
-     $sum += $total['total_saleing_price'];
-     $sub += $total['total_buying_price'];
-     $profit = $sum - $sub;
-   }
-   return array($sum,$profit);
 }
 
 //Function for date and time

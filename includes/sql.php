@@ -174,7 +174,7 @@ function tableExists($table){
             $session->msg('d','Please login...');
             redirect('index.php', false);
       //if group status Deactives
-     elseif($login_level['group_status'] === '0'):
+     elseif($login_level['group_status'] ??= '0'):
            $session->msg('d','This level user has been banned!');
            redirect('home.php',false);
       //checking logged in user level and require level is less than or equal to
@@ -190,11 +190,9 @@ function tableExists($table){
    //Function for finding all product name by joining with categorie and media database table
   function join_product_table(){
      global $db;
-     $sql  =" SELECT p.id,p.name,p.quantity,p.buy_price,p.sale_price,p.media_id,p.date,c.name";
-    $sql  .=" AS categorie,m.file_name AS image";
+     $sql  =" SELECT p.id,p.name,p.quantity,p.buy_price,p.sale_price,p.date,c.name";
     $sql  .=" FROM products p";
     $sql  .=" LEFT JOIN categories c ON c.id = p.categorie_id";
-    $sql  .=" LEFT JOIN media m ON m.id = p.media_id";
     $sql  .=" ORDER BY p.id ASC";
     return find_by_sql($sql);
 
@@ -241,10 +239,8 @@ function tableExists($table){
   /*--------------------------------------------------------------*/
  function find_recent_product_added($limit){
    global $db;
-   $sql   = " SELECT p.id,p.name,p.sale_price,p.media_id,c.name AS categorie,";
-   $sql  .= "m.file_name AS image FROM products p";
+   $sql   = " SELECT p.id,p.name,p.sale_price,c.name AS categorie,";
    $sql  .= " LEFT JOIN categories c ON c.id = p.categorie_id";
-   $sql  .= " LEFT JOIN media m ON m.id = p.media_id";
    $sql  .= " ORDER BY p.id DESC LIMIT ".$db->escape((int)$limit);
    return find_by_sql($sql);
  }
