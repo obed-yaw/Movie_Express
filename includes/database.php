@@ -14,12 +14,12 @@ class MySqli_DB {
 //Function for Open database connection
 public function db_connect()
 {
-  $this->con = mysqli_connect(DB_HOST,DB_USER,DB_PASS);
+  $this->con = mysqli_connect('localhost','root','Nuclearbomb2.');
   if(!$this->con)
          {
            die(" Database connection failed:". mysqli_connect_error());
          } else {
-           $select_db = $this->con->select_db(DB_NAME);
+           $select_db = $this->con->select_db("movie_express");
              if(!$select_db)
              {
                die("Failed to Select Database". mysqli_connect_error());
